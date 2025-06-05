@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Play, Info, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
@@ -19,6 +18,7 @@ const Index = () => {
   const [scrollPositions, setScrollPositions] = useState<{ [key: string]: number }>({});
 
   const movies: Movie[] = [
+    // Trending Movies
     {
       id: 1,
       title: "Stranger Things",
@@ -40,6 +40,125 @@ const Index = () => {
     },
     {
       id: 3,
+      title: "House of Cards",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "A ruthless politician will stop at nothing to conquer Washington, D.C."
+    },
+    {
+      id: 4,
+      title: "Ozark",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "A financial advisor drags his family from Chicago to the Missouri Ozarks."
+    },
+    {
+      id: 5,
+      title: "Narcos",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "The true story of the rise and fall of Pablo Escobar and the Medellín Cartel."
+    },
+    {
+      id: 6,
+      title: "Bridgerton",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "Wealth, lust, and betrayal set in the backdrop of Regency era England."
+    },
+    {
+      id: 7,
+      title: "The Queen's Gambit",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-14",
+      description: "In a 1950s orphanage, a young girl reveals an astonishing talent for chess."
+    },
+    {
+      id: 8,
+      title: "Money Heist",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "A criminal mastermind manipulates hostages and police during a heist."
+    },
+    {
+      id: 9,
+      title: "Squid Game",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "Hundreds of cash-strapped players accept an invitation to compete in children's games."
+    },
+    {
+      id: 10,
+      title: "Dark",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "A family saga with a supernatural twist set in a German town."
+    },
+    {
+      id: 11,
+      title: "The Umbrella Academy",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-14",
+      description: "A dysfunctional family of superheroes comes together to solve their father's mysterious death."
+    },
+    {
+      id: 12,
+      title: "Emily in Paris",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "A young American woman from Chicago moves to Paris for an unexpected job opportunity."
+    },
+    {
+      id: 13,
+      title: "Lupin",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "Inspired by the adventures of Arsène Lupin, gentleman thief Assane Diop sets out to avenge his father."
+    },
+    {
+      id: 14,
+      title: "The Witcher",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-MA",
+      description: "Geralt of Rivia, a solitary monster hunter, struggles to find his place in a world."
+    },
+    {
+      id: 15,
+      title: "Cobra Kai",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "trending",
+      year: 2023,
+      rating: "TV-14",
+      description: "Decades after the tournament, the rivalry between Johnny and Daniel reignites."
+    },
+
+    // Popular Movies
+    {
+      id: 16,
       title: "Wednesday",
       image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
       category: "popular",
@@ -48,7 +167,7 @@ const Index = () => {
       description: "Follows Wednesday Addams' years as a student at Nevermore Academy."
     },
     {
-      id: 4,
+      id: 17,
       title: "Breaking Bad",
       image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
       category: "popular",
@@ -57,7 +176,126 @@ const Index = () => {
       description: "A high school chemistry teacher turned methamphetamine producer."
     },
     {
-      id: 5,
+      id: 18,
+      title: "Better Call Saul",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "The trials and tribulations of criminal lawyer Jimmy McGill in the time before he meets Walter White."
+    },
+    {
+      id: 19,
+      title: "Orange Is the New Black",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A privileged New Yorker ends up in a women's federal prison when her past catches up with her."
+    },
+    {
+      id: 20,
+      title: "Mindhunter",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "In the late 1970s two FBI agents expand criminal science by delving into the psychology of murder."
+    },
+    {
+      id: 21,
+      title: "Black Mirror",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "An anthology series exploring a twisted, high-tech multiverse where humanity's greatest innovations."
+    },
+    {
+      id: 22,
+      title: "The Good Place",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-14",
+      description: "A woman struggles to be a good person when she realizes she's been mistakenly sent to the Good Place."
+    },
+    {
+      id: 23,
+      title: "Russian Doll",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A young woman gets caught in a mysterious loop, repeatedly attending the same party and dying."
+    },
+    {
+      id: 24,
+      title: "BoJack Horseman",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "Meet the most beloved sitcom horse of the '90s, 20 years later."
+    },
+    {
+      id: 25,
+      title: "Stranger Things 4",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-14",
+      description: "It's been six months since the Battle of Starcourt, which brought terror and destruction to Hawkins."
+    },
+    {
+      id: 26,
+      title: "Heartstopper",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-14",
+      description: "Charlie, a highly-strung, openly gay over-thinker, and Nick, a cheerful, soft-hearted rugby player."
+    },
+    {
+      id: 27,
+      title: "Euphoria",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A look at life for a group of high school students as they grapple with issues of drugs, sex, and violence."
+    },
+    {
+      id: 28,
+      title: "The Boys",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers."
+    },
+    {
+      id: 29,
+      title: "Succession",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "The Roy family is known for controlling the biggest media and entertainment company in the world."
+    },
+    {
+      id: 30,
+      title: "Outer Banks",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "popular",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A tight-knit group of teens unearths a long-buried secret, setting off a chain of illicit events."
+    },
+
+    // Action Movies
+    {
+      id: 31,
       title: "Money Heist",
       image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
       category: "action",
@@ -66,7 +304,7 @@ const Index = () => {
       description: "A criminal mastermind manipulates hostages and police."
     },
     {
-      id: 6,
+      id: 32,
       title: "Dark",
       image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
       category: "action",
@@ -75,7 +313,126 @@ const Index = () => {
       description: "A family saga with a supernatural twist set in a German town."
     },
     {
-      id: 7,
+      id: 33,
+      title: "Extraction",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2023,
+      rating: "R",
+      description: "A black-market mercenary who has nothing to lose is hired to rescue the kidnapped son of an imprisoned international crime lord."
+    },
+    {
+      id: 34,
+      title: "6 Underground",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2023,
+      rating: "R",
+      description: "Six individuals from all around the globe, each the very best at what they do, have been chosen."
+    },
+    {
+      id: 35,
+      title: "Red Notice",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2023,
+      rating: "PG-13",
+      description: "An Interpol agent tracks the world's most wanted art thief."
+    },
+    {
+      id: 36,
+      title: "The Gray Man",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2023,
+      rating: "PG-13",
+      description: "When the CIA's top asset — his identity known to no one — uncovers agency secrets."
+    },
+    {
+      id: 37,
+      title: "Triple Frontier",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "Five former Special Forces operatives reunite to plan a heist in a sparsely populated multi-border zone of South America."
+    },
+    {
+      id: 38,
+      title: "The Old Guard",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "A covert team of immortal mercenaries is suddenly exposed and must now fight to keep their identity a secret."
+    },
+    {
+      id: 39,
+      title: "Army of the Dead",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "Following a zombie outbreak in Las Vegas, a group of mercenaries take the ultimate gamble."
+    },
+    {
+      id: 40,
+      title: "Bright",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "In an alternate present-day where magical creatures live among us, two L.A. cops become embroiled in a prophesied turf war."
+    },
+    {
+      id: 41,
+      title: "Project Power",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "When a pill that gives its users unpredictable superpowers for five minutes hits the streets of New Orleans."
+    },
+    {
+      id: 42,
+      title: "Kate",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "R",
+      description: "A female assassin has 24 hours to get vengeance on her poisoner before she dies."
+    },
+    {
+      id: 43,
+      title: "Sweet Tooth",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "TV-14",
+      description: "A boy who is half-human and half-deer survives in a post-apocalyptic world with other hybrids."
+    },
+    {
+      id: 44,
+      title: "Shadow and Bone",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "TV-14",
+      description: "Dark forces conspire against orphan mapmaker Alina Starkov when she unleashes an extraordinary power."
+    },
+    {
+      id: 45,
+      title: "Jupiter's Legacy",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "action",
+      year: 2022,
+      rating: "TV-14",
+      description: "The first generation of superheroes has kept the world safe for nearly a century."
+    },
+
+    // Fantasy Movies
+    {
+      id: 46,
       title: "The Witcher",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
       category: "fantasy",
@@ -84,13 +441,130 @@ const Index = () => {
       description: "Geralt of Rivia, a solitary monster hunter, struggles to find his place."
     },
     {
-      id: 8,
+      id: 47,
       title: "Ozark",
       image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
       category: "fantasy",
       year: 2022,
       rating: "TV-MA",
       description: "A financial advisor drags his family from Chicago to the Missouri Ozarks."
+    },
+    {
+      id: 48,
+      title: "The Sandman",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2023,
+      rating: "TV-MA",
+      description: "After years of imprisonment, Morpheus — the King of Dreams — embarks on a journey across worlds."
+    },
+    {
+      id: 49,
+      title: "Cursed",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A teenage sorceress named Nimue encounters a young Arthur on her quest to find a powerful and ancient sword."
+    },
+    {
+      id: 50,
+      title: "Locke & Key",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-14",
+      description: "After their father is murdered, three siblings move to their ancestral home and find magical keys."
+    },
+    {
+      id: 51,
+      title: "The Umbrella Academy",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-14",
+      description: "A dysfunctional family of superheroes comes together to solve their father's mysterious death."
+    },
+    {
+      id: 52,
+      title: "Warrior Nun",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-MA",
+      description: "After waking up in a morgue, an orphaned teen discovers she now possesses superpowers."
+    },
+    {
+      id: 53,
+      title: "Sweet Magnolias",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-14",
+      description: "Lifelong friends Maddie, Helen and Dana Sue, lift each other as they juggle relationships, family and careers."
+    },
+    {
+      id: 54,
+      title: "October Faction",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-MA",
+      description: "Monster hunters Fred and Deloris Allen tangle with evil in the supernatural horror series."
+    },
+    {
+      id: 55,
+      title: "I Am Not Okay with This",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-MA",
+      description: "A teen navigates the complexities of high school, family and her sexuality while dealing with new superpowers."
+    },
+    {
+      id: 56,
+      title: "The Order",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-MA",
+      description: "Out to avenge his mother's death, a college student pledges to a secret order and lands in a war."
+    },
+    {
+      id: 57,
+      title: "Chilling Adventures of Sabrina",
+      image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-14",
+      description: "As her 16th birthday nears, Sabrina must choose between the witch world of her family."
+    },
+    {
+      id: 58,
+      title: "The Dragon Prince",
+      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-Y7",
+      description: "An extraordinary discovery inspires two human princes and an elven assassin to team up."
+    },
+    {
+      id: 59,
+      title: "She-Ra and the Princesses of Power",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-Y7",
+      description: "In this reboot of the '80s series, a magic sword transforms an orphan into warrior She-Ra."
+    },
+    {
+      id: 60,
+      title: "The Dark Crystal: Age of Resistance",
+      image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&h=450&fit=crop",
+      category: "fantasy",
+      year: 2022,
+      rating: "TV-PG",
+      description: "Return to the world of Thra, where three Gelfling discover the horrifying secret behind the Skeksis' power."
     }
   ];
 
