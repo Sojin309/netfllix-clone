@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Play, Info, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import ProfileDropdown from '../components/ProfileDropdown';
 
 interface Movie {
   id: number;
@@ -637,9 +638,7 @@ const Index = () => {
                 className="bg-black/50 border border-gray-600 rounded-sm pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-white transition-colors"
               />
             </div>
-            <div className="w-8 h-8 bg-red-600 rounded-sm flex items-center justify-center font-semibold text-sm">
-              U
-            </div>
+            <ProfileDropdown />
           </div>
         </div>
       </nav>
