@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -99,3 +100,142 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Netflix-specific animations and styles */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-hover {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out forwards;
+}
+
+/* Hide scrollbar for movie categories */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth hover transitions for movie cards */
+.movie-card-hover {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.movie-card-hover:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+/* Custom modal backdrop blur */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Netflix red gradient */
+.netflix-gradient {
+  background: linear-gradient(135deg, #e50914 0%, #b8080f 100%);
+}
+
+/* Smooth navigation bar transition */
+.nav-transition {
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hero section text animations with delays */
+.hero-title {
+  animation: fade-in 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.hero-description {
+  animation: fade-in 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.hero-buttons {
+  animation: fade-in 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* Enhanced button hover effects */
+.netflix-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.netflix-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Category scroll button animations */
+.scroll-button {
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.scroll-button:hover {
+  transform: translateX(0) scale(1.1);
+}
+
+/* Movie poster glow effect on hover */
+.movie-poster {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.movie-poster:hover {
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3);
+}
+
+/* Search input focus effect */
+.search-input:focus {
+  box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.5);
+}
+
+/* Staggered animation for category items */
+.category-item {
+  animation: slide-in-right 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.category-item:nth-child(1) { animation-delay: 0.1s; }
+.category-item:nth-child(2) { animation-delay: 0.2s; }
+.category-item:nth-child(3) { animation-delay: 0.3s; }
+.category-item:nth-child(4) { animation-delay: 0.4s; }
+.category-item:nth-child(5) { animation-delay: 0.5s; }
+.category-item:nth-child(6) { animation-delay: 0.6s; }
