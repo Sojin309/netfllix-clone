@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Play, Info, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Search, Play, Info, ChevronLeft, ChevronRight, X, Plus, Check } from 'lucide-react';
 import ProfileDropdown from '../components/ProfileDropdown';
+import { useMyList } from '../hooks/useMyList';
 
 interface Movie {
   id: number;
@@ -17,17 +18,19 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [scrollPositions, setScrollPositions] = useState<{ [key: string]: number }>({});
+  const [activeNav, setActiveNav] = useState('home');
+  const { myList, addToMyList, removeFromMyList, isInMyList } = useMyList();
 
   const movies: Movie[] = [
     // Trending Movies
     {
       id: 1,
       title: "Stranger Things",
-      image: "https://images.unsplash.com/photo-1489599849642-2aa49e1f6d7c?w=800&h=450&fit=crop",
+      image: "https://occ-0-2484-3662.1.nflxso.net/art/3e0f5/8ac0b8e45b20c3931c84331e7533e0f5f1736cc7.jpg",
       category: "trending",
       year: 2023,
       rating: "TV-14",
-      description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments.",
+      description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
       featured: true
     },
     {
@@ -569,6 +572,29 @@ const Index = () => {
     }
   ];
 
+  const getFilteredContent = () => {
+    if (searchQuery) {
+      return movies.filter(movie =>
+        movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    switch (activeNav) {
+      case 'tvshows':
+        return movies.filter(movie => 
+          movie.rating.includes('TV-') || movie.category === 'trending'
+        );
+      case 'movies':
+        return movies.filter(movie => 
+          !movie.rating.includes('TV-') || movie.category === 'action' || movie.category === 'fantasy'
+        );
+      case 'mylist':
+        return myList;
+      default:
+        return movies;
+    }
+  };
+
   const categories = [
     { id: 'trending', title: 'Trending Now' },
     { id: 'popular', title: 'Popular on Netflix' },
@@ -576,11 +602,16 @@ const Index = () => {
     { id: 'fantasy', title: 'Sci-Fi & Fantasy' }
   ];
 
-  const filteredMovies = movies.filter(movie =>
-    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+  const filteredMovies = getFilteredContent();
   const featuredMovie = movies.find(movie => movie.featured);
+
+  const handleMyListToggle = (movie: Movie) => {
+    if (isInMyList(movie.id)) {
+      removeFromMyList(movie.id);
+    } else {
+      addToMyList(movie);
+    }
+  };
 
   const scroll = (categoryId: string, direction: 'left' | 'right') => {
     const container = document.getElementById(`category-${categoryId}`);
@@ -621,10 +652,30 @@ const Index = () => {
           <div className="flex items-center space-x-8">
             <h1 className="text-red-600 text-2xl md:text-3xl font-bold">NETFLIX</h1>
             <div className="hidden md:flex space-x-6">
-              <a href="#" className="hover:text-gray-300 transition-colors">Home</a>
-              <a href="#" className="hover:text-gray-300 transition-colors">TV Shows</a>
-              <a href="#" className="hover:text-gray-300 transition-colors">Movies</a>
-              <a href="#" className="hover:text-gray-300 transition-colors">My List</a>
+              <button 
+                onClick={() => setActiveNav('home')}
+                className={`hover:text-gray-300 transition-colors ${activeNav === 'home' ? 'text-white font-semibold' : 'text-gray-400'}`}
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => setActiveNav('tvshows')}
+                className={`hover:text-gray-300 transition-colors ${activeNav === 'tvshows' ? 'text-white font-semibold' : 'text-gray-400'}`}
+              >
+                TV Shows
+              </button>
+              <button 
+                onClick={() => setActiveNav('movies')}
+                className={`hover:text-gray-300 transition-colors ${activeNav === 'movies' ? 'text-white font-semibold' : 'text-gray-400'}`}
+              >
+                Movies
+              </button>
+              <button 
+                onClick={() => setActiveNav('mylist')}
+                className={`hover:text-gray-300 transition-colors ${activeNav === 'mylist' ? 'text-white font-semibold' : 'text-gray-400'}`}
+              >
+                My List
+              </button>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -643,8 +694,8 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      {featuredMovie && (
+      {/* Hero Section - Only show on home */}
+      {featuredMovie && activeNav === 'home' && !searchQuery && (
         <section className="relative h-screen flex items-center">
           <div 
             className="absolute inset-0 bg-cover bg-center"
@@ -679,16 +730,20 @@ const Index = () => {
       )}
 
       {/* Movie Categories */}
-      <div className="relative z-10 -mt-32 md:-mt-48 space-y-8 pb-16">
-        {searchQuery ? (
+      <div className={`relative z-10 space-y-8 pb-16 ${activeNav === 'home' && !searchQuery ? '-mt-32 md:-mt-48' : 'pt-24'}`}>
+        {searchQuery || activeNav !== 'home' ? (
           <div className="px-4 md:px-16">
-            <h2 className="text-2xl font-semibold mb-4">Search Results</h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              {searchQuery ? 'Search Results' : 
+               activeNav === 'tvshows' ? 'TV Shows' :
+               activeNav === 'movies' ? 'Movies' :
+               activeNav === 'mylist' ? 'My List' : 'All Content'}
+            </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
               {filteredMovies.map((movie) => (
                 <div 
                   key={movie.id}
-                  onClick={() => openModal(movie)}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer relative"
                 >
                   <div className="aspect-video relative rounded-sm overflow-hidden">
                     <img 
@@ -697,8 +752,26 @@ const Index = () => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleMyListToggle(movie);
+                      }}
+                      className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    >
+                      {isInMyList(movie.id) ? (
+                        <Check className="w-3 h-3" />
+                      ) : (
+                        <Plus className="w-3 h-3" />
+                      )}
+                    </button>
                   </div>
-                  <h3 className="mt-2 text-sm font-medium truncate">{movie.title}</h3>
+                  <h3 
+                    onClick={() => openModal(movie)}
+                    className="mt-2 text-sm font-medium truncate hover:text-gray-300 transition-colors"
+                  >
+                    {movie.title}
+                  </h3>
                 </div>
               ))}
             </div>
@@ -725,8 +798,7 @@ const Index = () => {
                     {categoryMovies.map((movie) => (
                       <div 
                         key={movie.id}
-                        onClick={() => openModal(movie)}
-                        className="flex-none w-32 md:w-48 group cursor-pointer"
+                        className="flex-none w-32 md:w-48 group cursor-pointer relative"
                       >
                         <div className="aspect-video relative rounded-sm overflow-hidden">
                           <img 
@@ -735,8 +807,26 @@ const Index = () => {
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMyListToggle(movie);
+                            }}
+                            className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          >
+                            {isInMyList(movie.id) ? (
+                              <Check className="w-3 h-3" />
+                            ) : (
+                              <Plus className="w-3 h-3" />
+                            )}
+                          </button>
                         </div>
-                        <h3 className="mt-2 text-sm font-medium truncate">{movie.title}</h3>
+                        <h3 
+                          onClick={() => openModal(movie)}
+                          className="mt-2 text-sm font-medium truncate hover:text-gray-300 transition-colors"
+                        >
+                          {movie.title}
+                        </h3>
                       </div>
                     ))}
                   </div>
@@ -785,8 +875,21 @@ const Index = () => {
                   <Play className="w-4 h-4 fill-current" />
                   <span>Play</span>
                 </button>
-                <button className="border border-gray-600 text-white px-6 py-2 rounded-sm font-semibold hover:border-white transition-colors">
-                  Add to List
+                <button 
+                  onClick={() => handleMyListToggle(selectedMovie)}
+                  className="border border-gray-600 text-white px-6 py-2 rounded-sm font-semibold hover:border-white transition-colors flex items-center space-x-2"
+                >
+                  {isInMyList(selectedMovie.id) ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      <span>Remove from List</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-4 h-4" />
+                      <span>Add to List</span>
+                    </>
+                  )}
                 </button>
               </div>
             </div>
