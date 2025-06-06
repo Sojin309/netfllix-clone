@@ -519,7 +519,7 @@ const Index = () => {
     {
       id: 55,
       title: "I Am Not Okay with This",
-      image: "https://images.unsplash.com/photo-1574375927938-d5a98e1f6d7c?w=800&h=450&fit=crop",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
       category: "fantasy",
       year: 2022,
       rating: "TV-MA",
@@ -696,20 +696,20 @@ const Index = () => {
 
       {/* Hero Section - Only show on home */}
       {featuredMovie && activeNav === 'home' && !searchQuery && (
-        <section className="relative h-[90vh] flex items-end">
+        <section className="relative h-[75vh] flex items-end">
           <div 
             className="absolute inset-0 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${featuredMovie.image})` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
           </div>
           
-          <div className="relative z-10 px-4 md:px-16 pb-20 max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
+          <div className="relative z-10 px-4 md:px-16 pb-16 max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
               {featuredMovie.title}
             </h1>
-            <p className="text-lg md:text-xl mb-6 opacity-90 animate-fade-in">
+            <p className="text-lg md:text-xl mb-8 opacity-90 animate-fade-in leading-relaxed">
               {featuredMovie.description}
             </p>
             <div className="flex space-x-4 animate-fade-in">
@@ -730,10 +730,10 @@ const Index = () => {
       )}
 
       {/* Movie Categories */}
-      <div className={`relative z-10 space-y-8 pb-16 ${activeNav === 'home' && !searchQuery ? '-mt-32 md:-mt-48' : 'pt-24'}`}>
+      <div className={`relative z-10 space-y-12 pb-16 ${activeNav === 'home' && !searchQuery ? 'pt-8' : 'pt-24'}`}>
         {searchQuery || activeNav !== 'home' ? (
           <div className="px-4 md:px-16">
-            <h2 className="text-2xl font-semibold mb-4">
+            <h2 className="text-2xl font-semibold mb-6">
               {searchQuery ? 'Search Results' : 
                activeNav === 'tvshows' ? 'TV Shows' :
                activeNav === 'movies' ? 'Movies' :
@@ -781,7 +781,7 @@ const Index = () => {
             const categoryMovies = movies.filter(movie => movie.category === category.id);
             return (
               <div key={category.id} className="px-4 md:px-16">
-                <h2 className="text-xl md:text-2xl font-semibold mb-4">{category.title}</h2>
+                <h2 className="text-xl md:text-2xl font-semibold mb-6">{category.title}</h2>
                 <div className="relative group">
                   <button
                     onClick={() => scroll(category.id, 'left')}
