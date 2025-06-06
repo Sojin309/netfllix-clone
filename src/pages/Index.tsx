@@ -26,7 +26,7 @@ const Index = () => {
     {
       id: 1,
       title: "Stranger Things",
-      image: "/lovable-uploads/2ad47ff9-10f4-47cf-bde4-037b298cbbb2.png",
+      image: "https://images.nightcafe.studio/jobs/grlpksMlfSZMdR4vhhUu/grlpksMlfSZMdR4vhhUu--1--pb390.jpg?tr=w-1600,c-at_max",
       category: "trending",
       year: 2023,
       rating: "TV-14",
@@ -696,16 +696,16 @@ const Index = () => {
 
       {/* Hero Section - Only show on home */}
       {featuredMovie && activeNav === 'home' && !searchQuery && (
-        <section className="relative h-[70vh] md:h-[80vh] flex items-end">
+        <section className="relative h-[90vh] flex items-end">
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${featuredMovie.image})` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
           </div>
           
-          <div className="relative z-10 px-4 md:px-16 pb-16 max-w-2xl">
+          <div className="relative z-10 px-4 md:px-16 pb-20 max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
               {featuredMovie.title}
             </h1>
