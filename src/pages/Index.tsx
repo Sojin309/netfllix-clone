@@ -696,16 +696,16 @@ const Index = () => {
 
       {/* Hero Section - Only show on home */}
       {featuredMovie && activeNav === 'home' && !searchQuery && (
-        <section className="relative h-screen flex items-center">
+        <section className="relative h-[70vh] md:h-[80vh] flex items-end">
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${featuredMovie.image})` }}
           >
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
           </div>
           
-          <div className="relative z-10 px-4 md:px-16 max-w-2xl">
+          <div className="relative z-10 px-4 md:px-16 pb-16 max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
               {featuredMovie.title}
             </h1>
