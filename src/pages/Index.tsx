@@ -26,7 +26,7 @@ const Index = () => {
     {
       id: 1,
       title: "Stranger Things",
-      image: "https://occ-0-2484-3662.1.nflxso.net/art/3e0f5/8ac0b8e45b20c3931c84331e7533e0f5f1736cc7.jpg",
+      image: "/lovable-uploads/2ad47ff9-10f4-47cf-bde4-037b298cbbb2.png",
       category: "trending",
       year: 2023,
       rating: "TV-14",
@@ -519,7 +519,7 @@ const Index = () => {
     {
       id: 55,
       title: "I Am Not Okay with This",
-      image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=450&fit=crop",
+      image: "https://images.unsplash.com/photo-1574375927938-d5a98e1f6d7c?w=800&h=450&fit=crop",
       category: "fantasy",
       year: 2022,
       rating: "TV-MA",
